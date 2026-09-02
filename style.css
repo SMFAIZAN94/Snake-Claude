@@ -1,0 +1,203 @@
+:root {
+  --stage-bg: #0d0f12;
+  --phone-body: #3a3f47;
+  --phone-body-light: #4b515a;
+  --phone-body-dark: #26292e;
+  --lcd-bg: #9bb53c;
+  --lcd-bg-light: #aec24a;
+  --lcd-dark: #33430f;
+  --lcd-mid: #5c7519;
+  --key-face: #2b2e33;
+  --key-face-light: #3d4046;
+  --accent: #d7dce0;
+  --pixel-font: 'Press Start 2P', monospace;
+  --mono-font: 'VT323', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% -10%, #22262c 0%, var(--stage-bg) 60%);
+  color: var(--accent);
+  font-family: var(--mono-font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage {
+  padding: 32px 16px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--pixel-font);
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0 0 24px;
+  text-align: center;
+  text-shadow: 0 2px 0 #000;
+}
+
+.title-sub {
+  display: block;
+  font-family: var(--mono-font);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: #7c828b;
+  margin-top: 6px;
+  text-shadow: none;
+}
+
+/* ---------- Phone body ---------- */
+.phone {
+  width: 320px;
+  background: linear-gradient(160deg, var(--phone-body-light), var(--phone-body) 40%, var(--phone-body-dark));
+  border-radius: 34px;
+  padding: 22px 20px 26px;
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.7),
+    inset 0 2px 1px rgba(255, 255, 255, 0.12),
+    inset 0 -6px 12px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.speaker {
+  width: 60px;
+  height: 8px;
+  margin: 0 auto 16px;
+  border-radius: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--phone-body-dark) 0 3px,
+    transparent 3px 6px
+  );
+  opacity: 0.8;
+}
+
+.screen-bezel {
+  background: var(--phone-body-dark);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+  margin-bottom: 14px;
+}
+
+.lcd {
+  position: relative;
+  background: linear-gradient(155deg, var(--lcd-bg-light), var(--lcd-bg));
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35);
+}
+
+.lcd canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.lcd-glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 35%);
+  pointer-events: none;
+}
+
+.phone-brand {
+  text-align: center;
+  font-family: var(--pixel-font);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #9aa1ab;
+  margin-bottom: 18px;
+}
+
+/* ---------- Controls ---------- */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: 44px 44px 44px;
+  grid-template-rows: 44px 44px 44px;
+  gap: 4px;
+  place-items: center;
+}
+
+.dpad-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(160deg, var(--key-face-light), var(--key-face));
+  color: var(--accent);
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.dpad-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.dpad-btn.up { grid-column: 2; grid-row: 1; }
+.dpad-btn.left { grid-column: 1; grid-row: 2; }
+.dpad-btn.center {
+  grid-column: 2;
+  grid-row: 2;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #5c6470, #333740);
+  font-size: 12px;
+}
+.dpad-btn.right { grid-column: 3; grid-row: 2; }
+.dpad-btn.down { grid-column: 2; grid-row: 3; }
+
+.soft-keys {
+  display: flex;
+  gap: 10px;
+}
+
+.soft-key {
+  font-family: var(--mono-font);
+  font-size: 14px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(160deg, var(--key-face-light), var(--key-face));
+  color: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.soft-key:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.hint {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #6d7480;
+  text-align: center;
+  max-width: 320px;
+}
+
+@media (max-width: 380px) {
+  .phone { width: 92vw; }
+}
